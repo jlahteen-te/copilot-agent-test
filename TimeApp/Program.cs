@@ -51,7 +51,7 @@ class Program
         // Validate date is valid
         try
         {
-            var date = new DateTime(fullYear, month, day);
+            new DateTime(fullYear, month, day);
         }
         catch
         {
@@ -60,11 +60,11 @@ class Program
 
         // Validate check character
         string checkString = datePart + individualNumber;
-        int checkValue = int.Parse(checkString);
-        int remainder = checkValue % 31;
+        long checkValue = long.Parse(checkString);
+        long remainder = checkValue % 31;
         
         string checkChars = "0123456789ABCDEFHJKLMNPRSTUVWXY";
-        char expectedCheckChar = checkChars[remainder];
+        char expectedCheckChar = checkChars[(int)remainder];
 
         return checkChar == expectedCheckChar;
     }
