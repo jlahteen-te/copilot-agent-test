@@ -1,12 +1,12 @@
 ﻿// C# Console App that validates Finnish SSN
-class Program
+public class Program
 {
     static void Main(string[] args)
     {
         if (args.Length == 0)
         {
             Console.WriteLine("Usage: dotnet run <Finnish SSN>");
-            Console.WriteLine("Example: dotnet run 010190-123A");
+            Console.WriteLine("Example: dotnet run 131052-308T");
             return;
         }
 
@@ -15,7 +15,7 @@ class Program
         Console.WriteLine(isValid);
     }
 
-    static bool ValidateFinnishSSN(string ssn)
+    public static bool ValidateFinnishSSN(string ssn)
     {
         if (string.IsNullOrEmpty(ssn) || ssn.Length != 11)
             return false;
