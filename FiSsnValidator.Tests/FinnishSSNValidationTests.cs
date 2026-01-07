@@ -97,4 +97,44 @@ public class FinnishSSNValidationTests
         bool result = Program.ValidateFinnishSSN("010150+123A");
         Assert.True(result);
     }
+
+    [Fact]
+    public void ValidateFinnishSSN_WithLeadingWhitespace_ReturnsFalse()
+    {
+        // SSN with leading whitespace
+        bool result = Program.ValidateFinnishSSN(" 131052-308T");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishSSN_WithTrailingWhitespace_ReturnsFalse()
+    {
+        // SSN with trailing whitespace
+        bool result = Program.ValidateFinnishSSN("131052-308T ");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishSSN_LowercaseCheckCharacter_ReturnsFalse()
+    {
+        // Check character is case-sensitive and must be uppercase
+        bool result = Program.ValidateFinnishSSN("131052-308t");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishSSN_LeapYearDate_ReturnsTrue()
+    {
+        // Valid leap year date (Feb 29, 2000)
+        bool result = Program.ValidateFinnishSSN("290200A1239");
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishSSN_InvalidLeapYearDate_ReturnsFalse()
+    {
+        // Invalid leap year date (Feb 29, 1900 - not a leap year)
+        bool result = Program.ValidateFinnishSSN("290200-123Y");
+        Assert.False(result);
+    }
 }

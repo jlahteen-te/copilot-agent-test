@@ -62,7 +62,7 @@ public class Program
         {
             new DateTime(fullYear, month, day);
         }
-        catch
+        catch (ArgumentOutOfRangeException)
         {
             return false;
         }
