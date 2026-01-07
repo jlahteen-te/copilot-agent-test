@@ -3,6 +3,8 @@ namespace FiSsnValidator;
 
 public class Program
 {
+    private const string FINNISH_SSN_CHECK_CHARACTERS = "0123456789ABCDEFHJKLMNPRSTUVWXY";
+
     static void Main(string[] args)
     {
         if (args.Length == 0)
@@ -17,6 +19,11 @@ public class Program
         Console.WriteLine(isValid);
     }
 
+    /// <summary>
+    /// Validates a Finnish Social Security Number (SSN).
+    /// </summary>
+    /// <param name="ssn">The Finnish SSN to validate in format DDMMYY-NNNN where - can be -, +, or A</param>
+    /// <returns>True if the SSN is valid, false otherwise</returns>
     public static bool ValidateFinnishSSN(string ssn)
     {
         if (string.IsNullOrEmpty(ssn) || ssn.Length != 11)
@@ -65,8 +72,7 @@ public class Program
         long checkValue = long.Parse(checkString);
         long remainder = checkValue % 31;
         
-        string checkChars = "0123456789ABCDEFHJKLMNPRSTUVWXY";
-        char expectedCheckChar = checkChars[(int)remainder];
+        char expectedCheckChar = FINNISH_SSN_CHECK_CHARACTERS[(int)remainder];
 
         return checkChar == expectedCheckChar;
     }
