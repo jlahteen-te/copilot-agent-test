@@ -1,4 +1,6 @@
 ﻿// C# Console App that validates Finnish SSN
+namespace FiSsnValidator;
+
 public class Program
 {
     static void Main(string[] args)

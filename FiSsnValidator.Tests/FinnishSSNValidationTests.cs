@@ -1,4 +1,4 @@
-﻿namespace TimeApp.Tests;
+﻿namespace FiSsnValidator.Tests;
 
 public class FinnishSSNValidationTests
 {

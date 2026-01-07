@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TimeApp\TimeApp.csproj" />
+    <ProjectReference Include="..\FiSsnValidator\FiSsnValidator.csproj" />
   </ItemGroup>
 
 </Project>
