@@ -46,7 +46,7 @@ public class FinnishSSNValidationTests
     public void ValidateFinnishSSN_NullSSN_ReturnsFalse()
     {
         // Null SSN
-        bool result = Program.ValidateFinnishSSN(null);
+        bool result = Program.ValidateFinnishSSN(null!);
         Assert.False(result);
     }
 
