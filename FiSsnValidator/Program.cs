@@ -135,7 +135,8 @@ public class Program
         }
         else if (remainder == 1)
         {
-            // Business IDs with remainder 1 are not valid
+            // Business IDs with remainder 1 are not valid because the check digit
+            // would need to be 10, which cannot be represented as a single digit
             return false;
         }
         else
