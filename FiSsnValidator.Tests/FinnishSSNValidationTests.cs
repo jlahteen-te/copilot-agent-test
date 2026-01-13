@@ -137,4 +137,92 @@ public class FinnishSSNValidationTests
         bool result = Program.ValidateFinnishSSN("290200-123Y");
         Assert.False(result);
     }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_ValidBusinessID_ReturnsTrue()
+    {
+        // Valid Business ID: 2464491-9
+        bool result = Program.ValidateFinnishBusinessID("2464491-9");
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_AnotherValidBusinessID_ReturnsTrue()
+    {
+        // Valid Business ID: 0737546-2
+        bool result = Program.ValidateFinnishBusinessID("0737546-2");
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_InvalidCheckDigit_ReturnsFalse()
+    {
+        // Invalid check digit (should be 9, not 8)
+        bool result = Program.ValidateFinnishBusinessID("2464491-8");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_InvalidLength_ReturnsFalse()
+    {
+        // Business ID too short
+        bool result = Program.ValidateFinnishBusinessID("2464491-");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_NullBusinessID_ReturnsFalse()
+    {
+        // Null Business ID
+        bool result = Program.ValidateFinnishBusinessID(null);
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_EmptyBusinessID_ReturnsFalse()
+    {
+        // Empty Business ID
+        bool result = Program.ValidateFinnishBusinessID("");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_MissingSeparator_ReturnsFalse()
+    {
+        // Missing hyphen separator
+        bool result = Program.ValidateFinnishBusinessID("24644919");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_NonNumericNumberPart_ReturnsFalse()
+    {
+        // Non-numeric characters in number part
+        bool result = Program.ValidateFinnishBusinessID("246A491-9");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_NonNumericCheckDigit_ReturnsFalse()
+    {
+        // Non-numeric check digit
+        bool result = Program.ValidateFinnishBusinessID("2464491-X");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_WrongSeparatorPosition_ReturnsFalse()
+    {
+        // Separator in wrong position
+        bool result = Program.ValidateFinnishBusinessID("246449-19");
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void ValidateFinnishBusinessID_CheckDigitZero_ReturnsTrue()
+    {
+        // Valid Business ID with check digit 0: 2077474-0
+        bool result = Program.ValidateFinnishBusinessID("2077474-0");
+        Assert.True(result);
+    }
 }
